@@ -15,24 +15,27 @@ public class FunctionalTest
 {
  protected static WebDriver driver;
 
- @BeforeClass
-    public static void setUp(){
+ @Before
+ public  void setUp(){
 
      System.out.println("Launching");
      driver = new ChromeDriver();
      System.out.println("Driver creation");
      driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
      driver.get("http://www.google.com");
+     
  }
-
+ 
+ 
  @After
  public void cleanUp(){
      driver.manage().deleteAllCookies();
+     driver.close();
  }
 
  @AfterClass
  public static void tearDown(){
-     driver.close();
+     driver.quit();
  }
 
 }
